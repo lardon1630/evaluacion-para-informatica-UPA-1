@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportes</title>
+    <link rel="stylesheet" href="../css/reportes.css">
+    <script defer src="../js/reportes.js"></script>
+</head>
+<body>
+  <div class="contenedor-reportes">
+    <h1>Reportes</h1>
+    <ul id="reporte-lista">
+        <li><button data-reporte="todos_los_usuarios">Todos los Usuarios</button></li>
+        <li><button data-reporte="usuarios_creados_hoy">Usuarios Creados Hoy</button></li>
+        <li><button data-reporte="usuarios_creados_ayer">Usuarios Creados Ayer</button></li>
+    </ul>
+  </div>
+    <div id="reporte-contenido">
+        <h2>Resultados:</h2>
+        <pre id="reporte-resultados"></pre>
+    </div>
+</body>
+</html>
