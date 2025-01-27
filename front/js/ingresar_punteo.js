@@ -22,12 +22,22 @@ function validateForm(event) {
 
  
 
-    fetch("http://localhost:3000/guardar_punteo", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, phone }),
+fetch("http://localhost:3000/guardar_punteo", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, phone }),
+})
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            alert(data.error); // Show error message if any
+        } else {
+            alert(`Usuario guardado con ID: ${data.id}`);
+        }
     })
-        .then(response => response.json())
-        .then(data => alert(`Usuario guardado con ID: ${data.id}`))
-        .catch(err => console.error("Error al enviar datos:", err));
+    .catch(err => {
+        console.error("Error al enviar datos:", err);
+        alert("Hubo un error al procesar la solicitud.");
+    });
+
 }

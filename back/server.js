@@ -44,28 +44,33 @@ const db = mysql.createConnection({
 app.post("/guardar_punteo", (req, res) => {
     const { email, phone } = req.body;
 
-    if (  !email || !phone ) {
+    // Check if both fields are provided
+    if (!email || !phone) {
         return res.status(400).json({ error: "Faltan datos requeridos." });
     }
 
-    // const today = new Date();
-    // const birthDate = new Date(dob);
-    // const age = today.getFullYear() - birthDate.getFullYear();
+    // Check if the phone number contains only digits
+    if (!/^\d+$/.test(phone)) {
+        return res.status(400).json({ error: "El teléfono debe contener solo números." });
+    }
 
-    // if (age < 18) {
-    //     return res.status(400).json({ error: "Debe ser mayor de edad." });
-    // }
+    const today = new Date();
+    const creationDate = today.toISOString().split("T")[0];
 
-    // const creationDate = today.toISOString().split("T")[0];
+    // Insert into the database
     db.query(
-        "INSERT INTO punteo_usuario ( correo,telefono, EstadoUsuarioId) VALUES (?, ?, ?, ?, ?)",
-        [ phone, email, 1],
+        "INSERT INTO punteo_usuario (correo, telefono, creacion, EstadoUsuarioId) VALUES (?, ?, ?, ?)",
+        [email, phone, creationDate, 1],
         (err, result) => {
-            if (err) return res.status(500).json({ error: "Error al guardar el usuario." });
+            if (err) {
+                console.error("Error al guardar el punteo:", err);
+                return res.status(500).json({ error: "Error al guardar el punteo." });
+            }
             res.json({ id: result.insertId });
         }
     );
 });
+
 
 // app.get("/ejecutar_reporte/:reporte", (req, res) => {
 //     const reporte = req.params.reporte;
