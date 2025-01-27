@@ -42,25 +42,24 @@ const db = mysql.createConnection({
 // });
 
 app.post("/guardar_punteo", (req, res) => {
-    const { email, phone } = req.body;
+    const { punteo } = req.body;
 
     // Check if both fields are provided
-    if (!email || !phone) {
+    if (!punteo) {
         return res.status(400).json({ error: "Faltan datos requeridos." });
     }
 
     // Check if the phone number contains only digits
-    if (!/^\d+$/.test(phone)) {
+    if (!/^\d+$/.test(punteo)) {
         return res.status(400).json({ error: "El teléfono debe contener solo números." });
     }
 
-    const today = new Date();
-    const creationDate = today.toISOString().split("T")[0];
+
 
     // Insert into the database
     db.query(
-        "INSERT INTO punteo_usuario (correo, telefono, creacion, EstadoUsuarioId) VALUES (?, ?, ?, ?)",
-        [email, phone, creationDate, 1],
+        "INSERT INTO punteo_usuario (Punteo_Obtendio,email) VALUES (?, ?, ?, ?)",
+        [punteo, 1],
         (err, result) => {
             if (err) {
                 console.error("Error al guardar el punteo:", err);
@@ -69,6 +68,8 @@ app.post("/guardar_punteo", (req, res) => {
             res.json({ id: result.insertId });
         }
     );
+    
+    
 });
 
 

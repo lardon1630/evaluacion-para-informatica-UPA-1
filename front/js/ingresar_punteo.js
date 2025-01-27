@@ -8,14 +8,14 @@ function validateForm(event) {
     event.preventDefault();
 
     // const name = document.getElementById("name").value;
-    const phone = document.getElementById("phone").value;
+    const punteo = document.getElementById("phone").value;
     const email = document.getElementById("email").value;
     // const dob = document.getElementById("dob").value;
     // let age = parseInt(document.getElementById("age").textContent);
 
  
 
-    if (!/^\d+$/.test(phone)) {
+    if (!/^\d+$/.test(punteo)) {
         alert("El teléfono debe contener solo números.");
         return;
     }
@@ -25,7 +25,7 @@ function validateForm(event) {
 fetch("http://localhost:3000/guardar_punteo", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, phone }),
+    body: JSON.stringify({ punteo,email }),
 })
     .then(response => response.json())
     .then(data => {
