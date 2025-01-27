@@ -11,7 +11,7 @@ function validateForm(event) {
     const phone = document.getElementById("phone").value;
     const email = document.getElementById("email").value;
     // const dob = document.getElementById("dob").value;
-    let age = parseInt(document.getElementById("age").textContent);
+    // let age = parseInt(document.getElementById("age").textContent);
 
  
 
