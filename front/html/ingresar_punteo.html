@@ -4,9 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Punteo</title>
+    <script defer src="../js/ingresar_punteo.js"></script>
+    <link rel="stylesheet" href="../css/ingresar_punteo.css">
 </head>
 <body>
-    hola punteo
-    
+
+    <h1>Ingrese los datos requeridos</h1>
+    <form id="userForm">
+        <!-- <label for="name">Nombre:</label>
+        <input type="text" id="name" name="name" required>
+        <span id="error-name"></span><br>
+
+        <label for="dob">Fecha de Nacimiento:</label>
+        <input type="date" id="dob" name="dob" required>
+        <span id="error-dob"></span><br> -->
+
+        <label for="email">Correo Electrónico:</label>
+        <input type="email" id="email" name="email" required>
+        <span id="error-email"></span><br>
+
+        <label for="Numero">Ingrese un numero del 1 al 100</label>
+        <input type="text" id="phone" name="Numero" required>
+        <span id="error-phone"></span><br>
+<!-- 
+        <label>Edad:</label>
+        <span id="age">0</span><br> -->
+
+        <button type="submit">Registrar</button>
+
 </body>
 </html>
