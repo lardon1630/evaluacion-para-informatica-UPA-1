@@ -48,18 +48,18 @@ app.post("/guardar_punteo", (req, res) => {
         return res.status(400).json({ error: "Faltan datos requeridos." });
     }
 
-    const today = new Date();
-    const birthDate = new Date(dob);
-    const age = today.getFullYear() - birthDate.getFullYear();
+    // const today = new Date();
+    // const birthDate = new Date(dob);
+    // const age = today.getFullYear() - birthDate.getFullYear();
 
-    if (age < 18) {
-        return res.status(400).json({ error: "Debe ser mayor de edad." });
-    }
+    // if (age < 18) {
+    //     return res.status(400).json({ error: "Debe ser mayor de edad." });
+    // }
 
-    const creationDate = today.toISOString().split("T")[0];
+    // const creationDate = today.toISOString().split("T")[0];
     db.query(
         "INSERT INTO punteo_usuario ( correo,telefono, EstadoUsuarioId) VALUES (?, ?, ?, ?, ?)",
-        [ phone, email, creationDate, 1],
+        [ phone, email, 1],
         (err, result) => {
             if (err) return res.status(500).json({ error: "Error al guardar el usuario." });
             res.json({ id: result.insertId });
